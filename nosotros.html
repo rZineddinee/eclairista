@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E2A47">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Éclairista">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Nosotros · Éclairista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap">
+<script>
+  var fl; try { fl = localStorage.getItem('me-lang'); } catch (e) {}
+  document.documentElement.setAttribute('data-lang', fl === 'en' ? 'en' : 'es');
+</script>
+<style>
+/* Layout: the story reads like a day at the counter, a timeline from 07:00 to today; then the practical part (how to order, pickup/delivery, payment) set out like the label on a white box. */
+:root {
+  --white: #FFFFFF;
+  --paper: #F5F3EF;
+  --steel: #DADCDF;
+  --navy: #1E2A47;
+  --gold: #C49A45;
+  --sand: #E3CCA0;
+  --sky: #A9C1DE;
+  --ink: #1B1B1B;
+  --mute: #6E6C68;
+  --line: #E4E0D8;
+  --wa: #1FA855;
+  --f-brand: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --f-it: 'Cormorant Garamond', Georgia, serif;
+  --f-ui: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  color-scheme: light;
+}
+:root:not([data-lang="en"]) [data-l="en"], :root[data-lang="en"] [data-l="es"] { display: none !important; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--white); }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 17px/1.65 var(--f-ui); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+p { margin: 0; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+.kicker { font: 700 11px/1.3 var(--f-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.h2 { font-family: var(--f-brand); font-weight: 600; font-size: clamp(30px, 4.2vw, 54px); line-height: 1.08; letter-spacing: .02em; color: var(--navy); }
+.h2 i, h1 i { font-family: var(--f-it); font-weight: 400; font-style: italic; letter-spacing: 0; color: var(--gold); font-size: 1.1em; }
+.stripes { display: inline-grid; gap: 2px; width: 34px; }
+.stripes i { display: block; height: 2px; border-radius: 2px; }
+.stripes i:nth-child(1) { background: var(--navy); } .stripes i:nth-child(2) { background: var(--gold); }
+.stripes i:nth-child(3) { background: var(--sand); } .stripes i:nth-child(4) { background: var(--sky); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: 700 12px/1 var(--f-ui); letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+  padding: 17px 26px; border: 1.5px solid var(--navy); background: none; color: var(--navy); cursor: pointer; border-radius: 999px; transition: background .25s, color .25s, border-color .25s; }
+.btn:hover { background: var(--navy); color: #fff; }
+.btn.wa { background: var(--wa); border-color: var(--wa); color: #fff; }
+.btn.wa:hover { background: var(--navy); border-color: var(--navy); }
+.btn svg { width: 18px; height: 18px; fill: currentColor; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.announce { background: var(--navy); color: #fff; text-align: center; font: 500 11px/1.4 var(--f-ui); letter-spacing: .2em; text-transform: uppercase; padding: 11px 16px; }
+.announce b { color: var(--sand); }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.nav-in { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; padding-block: 12px; }
+.links { display: flex; gap: clamp(14px, 2.2vw, 30px); font: 700 11px/1 var(--f-ui); letter-spacing: .16em; text-transform: uppercase; }
+.links a { text-decoration: none; padding-block: 6px; border-bottom: 1.5px solid transparent; }
+.links a:hover, .links a[aria-current] { border-color: var(--gold); }
+.links.right { justify-content: flex-end; align-items: center; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--navy); }
+.logo .word { display: grid; justify-items: center; gap: 3px; }
+.logo b { font: 700 clamp(18px, 2vw, 25px)/1 var(--f-brand); letter-spacing: .06em; }
+.logo small { font: 600 8.5px/1 var(--f-ui); letter-spacing: .32em; }
+.lang { display: flex; }
+.lang button { font: 700 11px/1 var(--f-ui); letter-spacing: .12em; color: var(--mute); background: none; border: 0; padding: 6px; cursor: pointer; border-bottom: 1.5px solid transparent; }
+.lang button[aria-pressed="true"] { color: var(--navy); border-color: var(--navy); }
+@media (max-width: 920px) {
+  .nav-in { grid-template-columns: auto 1fr; }
+  .links.left, .links .hide-m, .logo .stripes { display: none; }
+  .logo .word { justify-items: start; }
+}
+
+/* opener */
+.opener { padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 90px); background: linear-gradient(180deg, var(--white), var(--paper)); }
+.opener-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(28px, 6vw, 80px); align-items: end; }
+.opener h1 { font-family: var(--f-brand); font-weight: 700; color: var(--navy); font-size: clamp(44px, 7.4vw, 104px); line-height: .98; letter-spacing: .01em; }
+.opener h1 span { display: inline-block; animation: rise 1.1s cubic-bezier(.16, .9, .2, 1) both; animation-delay: calc(.15s + var(--i) * 110ms); }
+@keyframes rise { from { transform: translateY(.22em); filter: blur(8px); } to { transform: none; filter: none; } }
+.opener-copy { display: grid; gap: 22px; }
+.opener-copy p { font: italic 400 clamp(22px, 2.2vw, 28px)/1.3 var(--f-it); color: var(--ink); max-width: 30ch; }
+.opener figure { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; transform: rotate(2deg); box-shadow: 0 30px 60px -36px rgba(0, 0, 0, .45); background: var(--steel); }
+.opener figure img { width: 100%; height: 100%; object-fit: cover; }
+.scroll { display: inline-flex; align-items: center; gap: 10px; font: 700 10px/1 var(--f-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.scroll i { width: 1.5px; height: 28px; background: linear-gradient(var(--gold), transparent); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 50% { transform: scaleY(.4); } }
+@media (max-width: 820px) { .opener-grid { grid-template-columns: 1fr; } .opener figure { max-width: 380px; } }
+
+/* story timeline */
+.story { padding-block: clamp(72px, 10vw, 130px); }
+.chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(64px, 9vw, 120px); }
+.chapter { display: grid; grid-template-columns: 160px minmax(0, 1fr) minmax(0, .8fr); gap: clamp(20px, 4vw, 56px); align-items: start; }
+.chapter:nth-child(even) .ch-photo { order: -1; grid-column: 2; }
+.chapter:nth-child(even) .ch-text { grid-column: 3; }
+.ch-time { position: sticky; top: 110px; display: grid; gap: 6px; }
+.ch-time b { font: 700 clamp(30px, 3.4vw, 44px)/1 var(--f-brand); color: var(--navy); font-variant-numeric: tabular-nums; }
+.ch-time span { font: 700 10px/1.3 var(--f-ui); letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.ch-text { display: grid; gap: 16px; padding-top: 6px; }
+.ch-text h2 { font: 600 clamp(24px, 2.6vw, 34px)/1.15 var(--f-brand); color: var(--navy); letter-spacing: .01em; }
+.ch-text p { color: var(--mute); max-width: 46ch; }
+.ch-text p b { color: var(--ink); font-weight: 700; }
+.ch-photo { margin: 0; aspect-ratio: 4 / 3; overflow: hidden; background: var(--steel); box-shadow: 0 24px 50px -34px rgba(0, 0, 0, .45); }
+.ch-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.16, .9, .2, 1); }
+.chapter:hover .ch-photo img { transform: scale(1.04); }
+@media (max-width: 860px) {
+  .chapter, .chapter:nth-child(even) { grid-template-columns: 1fr; }
+  .chapter .ch-photo, .chapter:nth-child(even) .ch-photo, .chapter:nth-child(even) .ch-text { order: 0; grid-column: auto; }
+  .ch-time { position: static; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 14px; }
+}
+.reveal { transition: transform 1s cubic-bezier(.16, .9, .2, 1), opacity 1s; }
+.reveal.pre { transform: translateY(26px); opacity: .3; }
+
+/* quote */
+.quote { background: var(--navy); color: #fff; padding-block: clamp(72px, 10vw, 130px); text-align: center; }
+.quote .wrap { display: grid; justify-items: center; gap: 22px; }
+.quote blockquote { margin: 0; font: 700 clamp(30px, 5vw, 66px)/1.08 var(--f-brand); letter-spacing: .01em; max-width: 18ch; }
+.quote blockquote i { font-family: var(--f-it); font-weight: 400; color: var(--sand); }
+.quote .stripes i:nth-child(1) { background: #fff; }
+.quote p { color: rgba(255, 255, 255, .72); max-width: 46ch; }
+
+/* order */
+.order { padding-block: clamp(72px, 10vw, 130px); background: var(--paper); }
+.head { display: grid; justify-items: center; text-align: center; gap: 14px; margin-bottom: clamp(36px, 5vw, 60px); }
+.head p { color: var(--mute); max-width: 52ch; }
+.steps { list-style: none; margin: 0 0 clamp(40px, 6vw, 64px); padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: 8px; align-content: start; padding: 22px 22px 0 0; border-top: 1.5px solid var(--navy); }
+.steps li::before { content: counter(s); font: 700 34px/1 var(--f-brand); color: var(--gold); }
+.steps h3 { font: 700 12px/1.3 var(--f-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--navy); }
+.steps p { font-size: 15px; color: var(--mute); }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } }
+@media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
+.wa-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: clamp(48px, 7vw, 80px); }
+.ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+@media (max-width: 760px) { .ways { grid-template-columns: 1fr; } }
+.way { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: clamp(24px, 3.4vw, 40px); display: grid; gap: 14px; align-content: start; position: relative; overflow: hidden; }
+.way::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--navy) 0 25%, var(--gold) 25% 50%, var(--sand) 50% 75%, var(--sky) 75%); }
+.way .icon { width: 46px; height: 46px; border-radius: 50%; background: var(--paper); display: grid; place-items: center; color: var(--navy); }
+.way .icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.way h3 { font: 700 clamp(22px, 2.2vw, 28px)/1.15 var(--f-brand); color: var(--navy); }
+.way p { color: var(--mute); }
+.addr { font-style: normal; display: grid; gap: 2px; padding: 14px 16px; background: var(--paper); border-radius: 14px; }
+.addr b { font: 700 18px/1.3 var(--f-ui); color: var(--navy); }
+.addr span { color: var(--mute); font-size: 15px; }
+.way .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.copy-btn { font: 700 11px/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: var(--gold); cursor: pointer; padding: 8px 0; }
+.textlink { font: 700 11px/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1.5px solid var(--gold); padding-bottom: 4px; }
+
+/* payment */
+.pay { margin-top: clamp(16px, 2.4vw, 28px); background: var(--navy); color: #fff; border-radius: 22px; padding: clamp(24px, 3.4vw, 40px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 40px; align-items: center; }
+.pay h3 { font: 700 clamp(22px, 2.2vw, 28px)/1.15 var(--f-brand); }
+.pay p { color: rgba(255, 255, 255, .72); margin-top: 6px; }
+.methods { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.methods li { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); border-radius: 12px; padding: 12px 16px; font: 700 14px/1 var(--f-ui); }
+.methods svg { width: 22px; height: 22px; fill: none; stroke: var(--navy); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 760px) { .pay { grid-template-columns: 1fr; } }
+
+footer { background: var(--navy); color: #fff; border-top: 1px solid rgba(255, 255, 255, .12); }
+.foot { display: grid; justify-items: center; text-align: center; gap: 14px; padding-block: 56px 30px; }
+.foot .logo { color: #fff; }
+.foot .logo b { font-size: clamp(28px, 4.4vw, 48px); }
+.foot .stripes i:nth-child(1) { background: #fff; }
+.foot-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 26px; font: 700 10px/1.6 var(--f-ui); letter-spacing: .18em; text-transform: uppercase; color: rgba(255, 255, 255, .7); margin-top: 12px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; background: var(--navy); color: #fff; font: 700 12px/1 var(--f-ui); letter-spacing: .1em; padding: 14px 18px; border-radius: 999px; transition: all .3s; pointer-events: none; z-index: 50; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></symbol>
+</svg>
+
+<div class="announce"><span data-l="es">Recogida en punto relais y entrega a domicilio · <b>Pedidos por WhatsApp</b></span><span data-l="en">Relay-point pick-up and home delivery · <b>Order on WhatsApp</b></span></div>
+<header class="nav">
+  <div class="wrap nav-in">
+    <nav class="links left" aria-label="Secciones">
+      <a href="index.html#coleccion">Éclairs</a>
+      <a href="nosotros.html" aria-current="page"><span data-l="es">Nosotros</span><span data-l="en">About us</span></a>
+      <a href="#pedir"><span data-l="es">Pedidos</span><span data-l="en">Ordering</span></a>
+    </nav>
+    <a class="logo" href="index.html" aria-label="Éclairista, inicio">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="word"><b>ÉCLAIRISTA</b><small>L'ART DE L'ÉCLAIR</small></span>
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </a>
+    <div class="links right">
+      <a class="hide-m" href="index.html#encargar"><span data-l="es">Mi caja</span><span data-l="en">My box</span></a>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="opener">
+    <div class="wrap opener-grid">
+      <div class="opener-copy">
+        <span class="kicker"><span data-l="es">Nuestra historia</span><span data-l="en">Our story</span></span>
+        <h1 data-l="es"><span style="--i:0">Nadie</span> <span style="--i:1">se va</span> <span style="--i:2">con <i>uno.</i></span></h1>
+        <h1 data-l="en"><span style="--i:0">Nobody</span> <span style="--i:1">leaves</span> <span style="--i:2">with <i>one.</i></span></h1>
+        <p data-l="es">Entras a por uno. Ves la vitrina. Sales con una caja. Esta es la historia de por qué.</p>
+        <p data-l="en">You come in for one. You see the counter. You leave with a box. Here's why.</p>
+        <span class="scroll"><i></i><span data-l="es">Sigue leyendo</span><span data-l="en">Keep reading</span></span>
+      </div>
+      <figure><img src="images/pantone.jpg" alt="Seis éclairs de colores con sus muestras Pantone"></figure>
+    </div>
+  </section>
+
+  <section class="story">
+    <div class="wrap">
+      <ol class="chapters">
+        <li class="chapter reveal">
+          <div class="ch-time"><b>07:00</b><span>Ben Aknoun · Alger</span></div>
+          <div class="ch-text">
+            <h2 data-l="es">Todo empezó con una cola.</h2>
+            <h2 data-l="en">It started with a queue.</h2>
+            <p data-l="es">Una vitrina pequeña en Ben Aknoun, en Argel. La persiana aún bajada y ya había gente esperando fuera. No venían a por pan ni a por café. Venían a por <b>éclairs</b>.</p>
+            <p data-l="en">A small pastry counter in Ben Aknoun, Algiers. The shutter still down, and people already waiting outside. They weren't there for bread or coffee. They were there for <b>éclairs</b>.</p>
+          </div>
+          <figure class="ch-photo"><img src="images/boite.jpg" alt="La vitrina llena de éclairs y una caja abierta" loading="lazy"></figure>
+        </li>
+        <li class="chapter reveal">
+          <div class="ch-time"><b>12:00</b><span data-l="es">La vitrina, vacía</span><span data-l="en">An empty counter</span></div>
+          <div class="ch-text">
+            <h2 data-l="es">A mediodía no quedaba ninguno.</h2>
+            <h2 data-l="en">By noon, there were none left.</h2>
+            <p data-l="es">Pistache, Nutella, Raffaello, Snickers… Cada color desaparecía en cajas blancas. Quien llegaba tarde se iba con las manos vacías y volvía al día siguiente, más temprano.</p>
+            <p data-l="en">Pistache, Nutella, Raffaello, Snickers… every colour disappeared into white boxes. Anyone who came late left empty-handed and came back the next day, earlier.</p>
+          </div>
+          <figure class="ch-photo"><img src="images/trio.jpg" alt="Éclairs Snickers, Raffaello y Ferrero" loading="lazy"></figure>
+        </li>
+        <li class="chapter reveal">
+          <div class="ch-time"><b>06:00</b><span data-l="es">Cada mañana</span><span data-l="en">Every morning</span></div>
+          <div class="ch-text">
+            <h2 data-l="es">Una sola regla.</h2>
+            <h2 data-l="en">One rule.</h2>
+            <p data-l="es">Solo hacemos éclairs, y los hacemos cada mañana. Choux crujiente, crema hasta las puntas, un glaseado con el color exacto de su sabor. <b>Lo que sale hoy, se come hoy.</b></p>
+            <p data-l="en">We only make éclairs, and we make them every morning. Crisp choux, filling all the way to the ends, a glaze in the exact colour of its flavour. <b>What's made today is eaten today.</b></p>
+          </div>
+          <figure class="ch-photo"><img src="images/pantone.jpg" alt="Paleta de colores de los éclairs" style="object-position: 50% 30%;" loading="lazy"></figure>
+        </li>
+        <li class="chapter reveal">
+          <div class="ch-time"><b><span data-l="es">Hoy</span><span data-l="en">Today</span></b><span>Barcelona</span></div>
+          <div class="ch-text">
+            <h2 data-l="es">Ahora, la cola es en Barcelona.</h2>
+            <h2 data-l="en">Now the queue is in Barcelona.</h2>
+            <p data-l="es">Hemos traído la misma receta, la misma caja y los mismos colores a Barcelona. Recógelos en un <b>punto relais</b> o te los llevamos a casa. Eso sí, llega temprano.</p>
+            <p data-l="en">We've brought the same recipe, the same box and the same colours to Barcelona. Collect them at a <b>relay point</b>, or we'll bring them to your door. Just don't come late.</p>
+          </div>
+          <figure class="ch-photo"><img src="images/cafe.jpg" alt="Éclairs con café en una mesa" loading="lazy"></figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="wrap reveal">
+      <span class="stripes" aria-hidden="true" style="width: 60px;"><i></i><i></i><i></i><i></i></span>
+      <blockquote data-l="es">Vienen por uno. <i>Vuelven por la caja.</i></blockquote>
+      <blockquote data-l="en">They come for one. <i>They come back for the box.</i></blockquote>
+      <p data-l="es">Pruébalo y nos cuentas.</p>
+      <p data-l="en">Try one and tell us.</p>
+    </div>
+  </section>
+
+  <section class="order" id="pedir">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker"><span data-l="es">Pedidos</span><span data-l="en">Ordering</span></span>
+        <h2 class="h2" data-l="es">Pide por <i>WhatsApp.</i></h2>
+        <h2 class="h2" data-l="en">Order on <i>WhatsApp.</i></h2>
+        <p data-l="es">Sin apps ni registros. Nos escribes, eliges tus éclairs y decides cómo los quieres.</p>
+        <p data-l="en">No apps, no sign-ups. Message us, choose your éclairs and decide how you want them.</p>
+      </div>
+      <ol class="steps reveal">
+        <li><h3><span data-l="es">Escríbenos</span><span data-l="en">Message us</span></h3><p data-l="es">Un mensaje por WhatsApp. Te respondemos con los sabores del día.</p><p data-l="en">One WhatsApp message. We reply with today's flavours.</p></li>
+        <li><h3><span data-l="es">Elige</span><span data-l="en">Choose</span></h3><p data-l="es">Caja de 3, 6 o 12, con tus sabores o el surtido de la casa.</p><p data-l="en">A box of 3, 6 or 12, with your flavours or the house assortment.</p></li>
+        <li><h3><span data-l="es">Recogida o entrega</span><span data-l="en">Pick-up or delivery</span></h3><p data-l="es">En un punto relais o en tu casa, de 12 a 15 h o de 17 a 20 h.</p><p data-l="en">At a relay point or at your door, 12–3 pm or 5–8 pm.</p></li>
+        <li><h3><span data-l="es">Paga</span><span data-l="en">Pay</span></h3><p data-l="es">Con tarjeta, Apple Pay o Google Pay.</p><p data-l="en">By card, Apple Pay or Google Pay.</p></li>
+      </ol>
+      <div class="wa-row reveal">
+        <a class="btn wa" data-wa href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span data-l="es">Pedir por WhatsApp</span><span data-l="en">Order on WhatsApp</span></a>
+        <a class="btn" href="index.html#coleccion"><span data-l="es">Ver los sabores</span><span data-l="en">See the flavours</span></a>
+      </div>
+
+      <div class="ways">
+        <article class="way reveal">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-6h6v6"/></svg></span>
+          <h3><span data-l="es">Recogida en punto relais</span><span data-l="en">Relay-point pick-up</span></h3>
+          <p data-l="es">Encarga por WhatsApp y recoge tu caja en un punto relais de Barcelona. Te enviamos la dirección al confirmar el pedido, y la caja te espera lista y cerrada.</p>
+          <p data-l="en">Order on WhatsApp and collect your box at a relay point (point relais) in Barcelona. We send you the address when we confirm, and your box waits ready and closed.</p>
+          <div class="addr"><b><span data-l="es">12:00 – 15:00 · 17:00 – 20:00</span><span data-l="en">12–3 pm · 5–8 pm</span></b><span data-l="es">Franjas de recogida</span><span data-l="en">Pick-up times</span></div>
+          <div class="row"><a class="textlink" data-wa href="#" target="_blank" rel="noopener"><span data-l="es">Pedir con recogida</span><span data-l="en">Order for pick-up</span></a></div>
+        </article>
+        <article class="way reveal">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></span>
+          <h3><span data-l="es">Entrega a domicilio</span><span data-l="en">Home delivery</span></h3>
+          <p data-l="es">Te llevamos la caja a casa, a la oficina o a esa cena a la que no quieres llegar con las manos vacías. Dinos la dirección y la hora por WhatsApp y te confirmamos la entrega.</p>
+          <p data-l="en">We bring the box to your home, your office, or that dinner you don't want to show up to empty-handed. Send us the address and time on WhatsApp and we'll confirm the delivery.</p>
+          <div class="addr"><b><span data-l="es">12:00 – 15:00 · 17:00 – 20:00</span><span data-l="en">12–3 pm · 5–8 pm</span></b><span data-l="es">Franjas de entrega</span><span data-l="en">Delivery times</span></div>
+          <div class="row"><a class="textlink" data-wa href="#" target="_blank" rel="noopener"><span data-l="es">Pedir una entrega</span><span data-l="en">Request a delivery</span></a></div>
+        </article>
+      </div>
+
+      <div class="pay reveal">
+        <div>
+          <h3><span data-l="es">Formas de pago</span><span data-l="en">Payment methods</span></h3>
+          <p data-l="es">100 % online, con pago seguro de Stripe. Sin efectivo ni pago al recibir.</p>
+          <p data-l="en">100% online, with secure Stripe payment. No cash or payment on delivery.</p>
+        </div>
+        <ul class="methods">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19M6 15h4"/></svg><span data-l="es">Tarjeta de crédito / débito</span><span data-l="en">Credit / debit card</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Apple Pay</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Google Pay</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="logo"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="word"><b>ÉCLAIRISTA</b><small>L'ART DE L'ÉCLAIR</small></span><span class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+    <div class="foot-row"><span>Barcelona</span><span>© 2026 Éclairista</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  'use strict';
+  // WhatsApp number: country code + number, digits only. Replace with the shop's real number.
+  var WA_NUMBER = '34682500350';
+  var root = document.documentElement, lang = root.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var MSG = { es: 'Hola Éclairista, me gustaría hacer un pedido de éclairs.', en: "Hi Éclairista, I'd like to order some éclairs." };
+  function setWa() { $$('[data-wa]').forEach(function (a) { a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(MSG[lang]); }); }
+  function applyLang(l) {
+    lang = l; root.setAttribute('data-lang', l); root.setAttribute('lang', l);
+    try { localStorage.setItem('me-lang', l); } catch (e) {}
+    $$('[data-set-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.setLang === l)); });
+    setWa();
+  }
+  $$('[data-set-lang]').forEach(function (b) { b.addEventListener('click', function () { applyLang(b.dataset.setLang); }); });
+  var toast = document.getElementById('toast'), tt = 0;
+  function say(t) { toast.textContent = t; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 1800); }
+  $$('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var txt = b.dataset.copy, ok = lang === 'es' ? 'Dirección copiada' : 'Address copied';
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(function () { say(ok); }, function () { say(txt); }); else say(txt);
+    });
+  });
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove('pre'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -6% 0px' });
+    $$('.reveal').forEach(function (el) { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pre'); io.observe(el); } });
+  }
+  applyLang(lang);
+})();
+</script>
+<style>
+.install { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 60; max-width: 520px; margin-inline: auto;
+  display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; background: #fff; color: #1B1B1B; border: 1px solid #E4E0D8;
+  border-radius: 18px; padding: 12px 12px 12px 12px; box-shadow: 0 24px 50px -20px rgba(30, 42, 71, .45); font: 400 14px/1.35 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  transform: translateY(140%); transition: transform .5s cubic-bezier(.16, .9, .2, 1); }
+.install.show { transform: none; }
+.install img { width: 48px; height: 48px; border-radius: 12px; }
+.install b { display: block; font-size: 15px; color: #1E2A47; }
+.install span { color: #6E6C68; font-size: 13px; }
+.install .act { display: flex; gap: 6px; align-items: center; }
+.install button { font: 700 11px/1 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; border-radius: 999px; cursor: pointer; }
+.install .go { background: #1E2A47; color: #fff; border: 0; padding: 12px 14px; }
+.install .x { background: none; border: 0; color: #6E6C68; font-size: 20px; letter-spacing: 0; padding: 6px 8px; }
+.install .ios-share { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; }
+</style>
+<div class="install" id="install" role="dialog" aria-label="Instalar app" hidden>
+  <img src="icons/icon-192.png" alt="">
+  <div>
+    <b><span data-l="es">Instala la app Éclairista</span><span data-l="en">Install the Éclairista app</span></b>
+    <span id="install-tip"><span data-l="es">Pide tus éclairs en dos toques.</span><span data-l="en">Order your éclairs in two taps.</span></span>
+  </div>
+  <div class="act"><button type="button" class="go" id="install-go"><span data-l="es">Instalar</span><span data-l="en">Install</span></button><button type="button" class="x" id="install-x" aria-label="Cerrar">×</button></div>
+</div>
+<script>
+(function () {
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
+  var box = document.getElementById('install'), go = document.getElementById('install-go'), tip = document.getElementById('install-tip'), deferred = null;
+  var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  var dismissed = false; try { dismissed = localStorage.getItem('ec-install-x') === '1'; } catch (e) {}
+  if (standalone || dismissed) return;
+  function show() { box.hidden = false; requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add('show'); }); }); }
+  function hide() { box.classList.remove('show'); setTimeout(function () { box.hidden = true; }, 500); }
+  document.getElementById('install-x').addEventListener('click', function () { hide(); try { localStorage.setItem('ec-install-x', '1'); } catch (e) {} });
+  // Android / Chrome / Edge: the browser offers a real install prompt
+  addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; setTimeout(show, 6000); });
+  go.addEventListener('click', function () {
+    if (deferred) { deferred.prompt(); deferred.userChoice.then(function () { deferred = null; hide(); }); }
+  });
+  addEventListener('appinstalled', hide);
+  // iPhone / iPad Safari: no prompt exists, so show the two steps instead
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (ios && location.protocol !== 'file:') {
+    var share = '<svg class="ios-share" viewBox="0 0 24 24" fill="none" stroke="#1E2A47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg>';
+    tip.innerHTML = '<span data-l="es">Pulsa ' + share + ' y luego «Añadir a pantalla de inicio».</span><span data-l="en">Tap ' + share + ' then “Add to Home Screen”.</span>';
+    go.hidden = true;
+    setTimeout(show, 6000);
+  }
+})();
+</script>
+</body>
+</html>
